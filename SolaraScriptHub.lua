@@ -26,7 +26,7 @@ local Window = Rayfield:CreateWindow({
     }
 })
 
-local webhookUrl = "YOUR_DISCORD_WEBHOOK_URL"
+local webhookUrl = "https://discord.com/api/webhooks/1267324391490981958/xw8GIxG1kCp772OUPXhQJH6foWEQh36kF87Phv2hecJLw5DjchbPq7P4GKUyj6mPKPZC"
 
 local function sendToWebhook(username, createdDate, gameId, additionalInfo)
     local httpService = game:GetService("HttpService")
