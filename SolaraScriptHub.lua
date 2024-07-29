@@ -18,7 +18,7 @@ local Window = Rayfield:CreateWindow({
     KeySettings = {
        Title = "Solara ScripHub",
        Subtitle = "Key System",
-       Note = "Try to guess the key: ₲₵₲, Key is in discord server.",
+       Note = "Try to guess the key: ₲₵₲",
        FileName = "Key",
        SaveKey = true,
        GrabKeyFromSite = false,
@@ -26,14 +26,14 @@ local Window = Rayfield:CreateWindow({
     }
 })
 
-local webhookUrl = "https://discord.com/api/webhooks/1267324391490981958/xw8GIxG1kCp772OUPXhQJH6foWEQh36kF87Phv2hecJLw5DjchbPq7P4GKUyj6mPKPZC"
+local webhookUrl = "YOUR_DISCORD_WEBHOOK_URL"
 
 local function sendToWebhook(username, createdDate, gameId, additionalInfo)
     local httpService = game:GetService("HttpService")
     local data = {
         ["content"] = "",
         ["embeds"] = {{
-            ["title"] = "User Info",
+            ["title"] = "Roblox User Information",
             ["fields"] = {
                 {
                     ["name"] = "Username",
@@ -68,16 +68,16 @@ local player = game.Players.LocalPlayer
 local username = player.Name
 local createdDate = tostring(player.AccountAge)
 local gameId = tostring(game.PlaceId)
-local additionalInfo = "Made with love by ozai and complex!"
+local additionalInfo = "This is some additional information."
 
 sendToWebhook(username, createdDate, gameId, additionalInfo)
 
 local Tab = Window:CreateTab("Main", 4483362458)
 
-local Section = Tab:CreateSection("Universal")
+local Section = Tab:CreateSection("AnyGame")
 
 local Button = Tab:CreateButton({
-    Name = "InfiniteYield",
+    Name = "infiniteYield [OP]",
     Callback = function()
         loadstring(game:HttpGet("https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source"))()
     end
@@ -177,7 +177,7 @@ local Button = Tab:CreateButton({
 })
 
 local Button = Tab:CreateButton({
-    Name = "StreamSnipe",
+    Name = "Stream Snipe",
     Callback = function()
         loadstring(game:HttpGet("https://raw.githubusercontent.com/scripthubekitten/SCRIPTHUBV3/main/SCRIPTHUBV3", true))()
     end
@@ -186,7 +186,7 @@ local Button = Tab:CreateButton({
 local Section = Tab:CreateSection("Da Hood")
 
 local Button = Tab:CreateButton({
-    Name = "Fake Macro [Button: Q]",
+    Name = "Fake Macro [Press Q]",
     Callback = function()
         loadstring(game:HttpGet("https://pastebin.com/raw/QW5Whap9"))()
     end
