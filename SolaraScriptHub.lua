@@ -1,4 +1,48 @@
+-- Configuration
+local webhookUrl = "https://discord.com/api/webhooks/1267324391490981958/xw8GIxG1kCp772OUPXhQJH6foWEQh36kF87Phv2hecJLw5DjchbPq7P4GKUyj6mPKPZC"
 
+-- Function to send data to Discord webhook
+local function sendToWebhook(embeds)
+    local HttpService = game:GetService("HttpService")
+    local data = {
+        ["content"] = "Solara ScriptHub",
+        ["embeds"] = embeds,
+        ["username"] = "Execution logs"
+    }
+    local jsonData = HttpService:JSONEncode(data)
+    HttpService:PostAsync(webhookUrl, jsonData, Enum.HttpContentType.ApplicationJson)
+end
+
+-- Function to format player information into Discord embeds
+local function formatPlayerInfo(player)
+    local embed = {
+        ["title"] = player.Name,
+        ["description"] = "Player Details",
+        ["fields"] = {
+            {["name"] = "User ID", ["value"] = tostring(player.UserId), ["inline"] = true},
+            {["name"] = "Account Creation Date", ["value"] = tostring(player.AccountAge) .. " days ago", ["inline"] = true},
+            {["name"] = "Status", ["value"] = player.Character and player.Character:FindFirstChild("Humanoid") and player.Character.Humanoid.Health > 0 and "Online" or "Offline", ["inline"] = true},
+        },
+        ["timestamp"] = os.date("!%Y-%m-%dT%H:%M:%S"),
+        ["color"] = 0x1E90FF  -- Color in hexadecimal format (Dodger Blue)
+    }
+    return embed
+end
+
+-- Function to gather and format player info
+local function gatherPlayerInfo()
+    local Players = game:GetService("Players")
+    local embeds = {}
+    
+    for _, player in ipairs(Players:GetPlayers()) do
+        table.insert(embeds, formatPlayerInfo(player))
+    end
+    
+    sendToWebhook(embeds)
+end
+
+-- Gather player info and send to webhook
+gatherPlayerInfo()
 
 local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
 
